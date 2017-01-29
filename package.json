@@ -1,0 +1,36 @@
+{
+    "author": "Luka Djokovic",
+    "license": "Apache-2.0",
+
+    "name": "spatialhash-2d",
+    "description": "A node.js implementation of a spatial hash",
+
+    "version": "1.0.2",
+    "main": "./src/uppercaseme",
+
+    "keywords": [
+        "spatial",
+        "hash",
+        "map",
+        "spatial-hash",
+        "pathfinding",
+        "search",
+        "2d"
+    ],
+
+    "dependencies": {},
+    "engines": {
+        "node": "*"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Luka967/SpatialHash"
+    },
+    "bugs": {
+        "url": "https://github.com/Luka967/SpatialHash/issues"
+    }
+}
