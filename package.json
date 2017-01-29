@@ -6,7 +6,7 @@
     "description": "A node.js implementation of a spatial hash",
 
     "version": "1.0.2",
-    "main": "./src/uppercaseme",
+    "main": "./src/index",
 
     "keywords": [
         "spatial",
