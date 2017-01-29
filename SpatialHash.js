@@ -31,7 +31,7 @@ SpatialHash.prototype.init = function() {
 
 SpatialHash.prototype.insert = function(item) {
     if (!item.range) return;
-    var b = getBounds(item.getRange()),
+    var b = getBounds(item.range),
         bucketSize = this.bucketSize;
 
     var hStart = ~~(b.left / bucketSize);
