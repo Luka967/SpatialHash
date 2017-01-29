@@ -27,6 +27,8 @@ SpatialHash.prototype.init = function() {
         z[i] = a;
     }
     this.hashes = z;
+    this.itemCount = 0;
+    this._nId = -1e8;
 };
 
 SpatialHash.prototype.insert = function(item) {
@@ -34,10 +36,10 @@ SpatialHash.prototype.insert = function(item) {
     var b = getBounds(item.range),
         bucketSize = this.bucketSize;
 
-    var hStart = ~~(b.left / bucketSize);
-    var hEnd = ~~(b.right / bucketSize);
-    var vStart = ~~(b.top / bucketSize);
-    var vEnd = ~~(b.bottom / bucketSize);
+    var hStart = Math.max(~~(b.left / bucketSize), this._hStart);
+    var hEnd = Math.min(~~(b.right / bucketSize), this._hEnd);
+    var vStart = Math.max(~~(b.top / bucketSize), this._vStart);
+    var vEnd = Math.min(~~(b.bottom / bucketSize), this._vEnd);
     item.__b = {
         hStart: hStart,
         hEnd: hEnd,
@@ -103,11 +105,11 @@ SpatialHash.prototype.__srch = function(range, selector, callback, returnOnFirst
             m = 0;
             for (; m < l; m++)
                 if (intersects(k[m].range, range) && p.indexOf(k[m].__b.id) === -1) {
+                    p.push(k[m].__b.id);
                     if (selector) if (!selector(k[m])) continue;
                     if (callback) callback(k[m]);
                     if (returnOnFirst) return true;
                     o.push(k[m]);
-                    p.push(k[m].__b.id);
                 }
         }
     }
