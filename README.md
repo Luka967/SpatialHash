@@ -59,11 +59,23 @@ The second argument passed in the constructor. Changing it will create problems 
 
 The amount of items currently in the map.
 
-The maximum item count is 200 000 000.
+The maximum item count is 900 000 000 000 000.
 
 #### `.hashes`
 
 The map. See remarks for more info.
+
+#### `.horizontalBuckets`
+
+Amount of horizontal buckets in the map. See remarks for more info.
+
+#### `.verticalBuckets`
+
+Amount of vertical buckets in the map. See remarks for more info.
+
+#### `.bucketCount`
+
+Amount of buckets in the map. Basically `.horizontalBuckets * .verticalBuckets`.
 
 ### Functions
 
