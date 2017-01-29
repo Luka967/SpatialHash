@@ -5,7 +5,7 @@
     "name": "spatialhash-2d",
     "description": "A node.js implementation of a spatial hash",
 
-    "version": "1.0.3",
+    "version": "1.0.31",
     "main": "./src/index",
 
     "keywords": [
