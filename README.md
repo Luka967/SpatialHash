@@ -1,3 +1,5 @@
+![npm package](https://nodei.co/npm/spatialhash-2d.png?downloads=true&downloadRank=true&stars=true)
+
 # SpatialHash
 A node.js implementation of a 2D spatial hash.
 
