@@ -1,14 +1,6 @@
 function SpatialHash(range, bucketSize) {
     this.bucketSize = bucketSize || 100;
     this.range = range;
-    this.itemCount = 0;
-    var b = this.rangeBounds = getBounds(range);
-
-    this._hStart = ~~(b.left / bucketSize);
-    this._hEnd = ~~(b.right / bucketSize);
-    this._vStart = ~~(b.top / bucketSize);
-    this._vEnd = ~~(b.bottom / bucketSize);
-    this._nId = -1e8;
 
     this.init();
 }
@@ -16,6 +8,14 @@ function SpatialHash(range, bucketSize) {
 module.exports = SpatialHash;
 
 SpatialHash.prototype.init = function() {
+    var b = getBounds(this.range),
+        bucketSize = this.bucketSize;
+
+    this._hStart = ~~(b.left / bucketSize);
+    this._hEnd = ~~(b.right / bucketSize);
+    this._vStart = ~~(b.top / bucketSize);
+    this._vEnd = ~~(b.bottom / bucketSize);
+
     var z = { };
     var i = this._hStart;
     for (; i <= this._hEnd; i++) {
@@ -26,9 +26,13 @@ SpatialHash.prototype.init = function() {
             a[j] = [];
         z[i] = a;
     }
+
     this.hashes = z;
     this.itemCount = 0;
-    this._nId = -1e8;
+    this.horizontalBuckets = (this._hEnd - this._hStart) + 1;
+    this.verticalBuckets = (this._vEnd - this._vStart) + 1;
+    this.bucketCount = this.horizontalBuckets * this.verticalBuckets;
+    this._nId = -9e15;
 };
 
 SpatialHash.prototype.insert = function(item) {
@@ -55,10 +59,10 @@ SpatialHash.prototype.insert = function(item) {
             this.hashes[i][j].push(item);
     }
 
-    if (this.itemCount++ >= 2e8)
-        throw new Error("SpatialHash: To ensure pure integer stability it must not have more than 2E8 (200 million) objects");
-    else if (this.itemCount > 1e8 - 1)
-        this.itemCount = -1e8;
+    if (this.itemCount++ >= 9e15)
+        throw new Error("SpatialHash: To ensure pure integer stability it must not have more than 9E15 (900 000 000 000 000) objects");
+    else if (this._nId > 9e15 - 1)
+        this._nId = -9e15;
 };
 
 SpatialHash.prototype.remove = function(item) {

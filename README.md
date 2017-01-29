@@ -77,7 +77,7 @@ Inserts an item.
 
 See item requirements that need to be met. Functionality is not guaranteed if requirements are not met.
 
-The maximum item count is 200 000 000.
+The maximum item count is 900 000 000 000 000.
 
 The `.insert(item)` function creates a `.__b` object in the `item`.
 
@@ -147,4 +147,14 @@ The map goes horizontally then vertically, and at the end is an array that will 
 
 This is because an item can be larger than the bucket size and will sometimes not be found when searching.
 
-This requires for an ID, and that's why there is a maximum item count, 200 000 000, to ensure integer stability.
+This requires for an ID, and that's why there is a maximum item count, 900 000 000 000 000, to ensure integer stability.
+
+**item.__b.id number may overlap with some other id**.
+
+This is due to the class just adding 1 to the next number.
+
+This *is* fixable but very performance-costly.
+
+Also this problem will appear only if you add 1 800 000 000 000 000 or more objects into the map and then remove it.
+
+Which will take a few hours to come to.
